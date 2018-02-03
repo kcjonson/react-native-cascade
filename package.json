@@ -1,0 +1,34 @@
+{
+  "name": "react-native-cascade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "run": "babel test/BasicComponent.jsx --plugins=../index.js --presets=react --no-babelrc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcjonson/react-native-cascade.git"
+  },
+  "author": "Kevin Jonson <kcjonson@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcjonson/react-native-cascade/issues"
+  },
+  "homepage": "https://github.com/kcjonson/react-native-cascade#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.1.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^22.1.4",
+    "react": "^16.2.0",
+    "react-native": "^0.52.2",
+    "react-test-renderer": "^16.2.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

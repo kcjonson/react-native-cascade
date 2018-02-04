@@ -18,12 +18,14 @@ module.exports = function (babel) { // eslint-disable-line func-names
           const stylesheetsVariable = state.get('stylesheetsVariable');
           const varDec = t.VariableDeclarator(stylesheetsVariable, cssImportsArray);
           const varDecion = t.VariableDeclaration('const', [varDec]);
-
           path.node.body.push(varDecion);
+
+          // TODO: Only write computeStyle function in if needed
           path.node.body.push(computestyleAST.program.body[0]);
         },
       },
       ImportDeclaration(path, state) {
+        // TODO: Handle named imports
         if (path.node.source
             && path.node.source.type === 'StringLiteral'
             && path.node.source.value.endsWith('.css')) {
@@ -42,6 +44,8 @@ module.exports = function (babel) { // eslint-disable-line func-names
                 && attribute.name.name === 'className') {
 
               // <* className="foo">
+              // TODO: If its a raw string we can write the output inline into the component
+              //      at build time and reduce some JS overhead.
               if (attribute.value.type === 'StringLiteral') {
                 callExpressionValue = attribute.value;
               }
@@ -56,6 +60,7 @@ module.exports = function (babel) { // eslint-disable-line func-names
         }
 
         if (callExpressionValue) {
+          // TODO: Handle the case where the style= tag already exists on the node
           const callExpression = t.CallExpression(t.Identifier('computeStyle'), [callExpressionValue, state.get('stylesheetsVariable')]);
           const styleAttributeIdentifier = t.JSXIdentifier('style');
           const expressionContainer = t.JSXExpressionContainer(callExpression);

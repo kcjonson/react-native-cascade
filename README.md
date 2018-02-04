@@ -5,15 +5,15 @@
 
 react-native cascade is a Babel plugin that will pair css declarations in imported stylesheets with nodes matching their selectors in JSX, automatically. 
 
-### Goals
+## Goals
 - Reduce boilerplate and unnecessary dev effort caused by manually pairing React Native stylesheets with JSX nodes
 - Feels like writing styles on web as much as possible and uses web style cascade priorities
 -  Automatically pairs any css selectors from an imported stylesheet to nodes in a JSX template without any manual steps
 - Does not create global scope, all styles remain tightly bound to the component importing them
 - Usable with any utility that would create classname strings such as classnames
 
-<br />
-### Installation
+
+## Installation
 
 ```Shell
 npm install babel-preset-react-native-cascade --save-dev
@@ -27,8 +27,8 @@ add it to the plugins list in your `.babelrc`
   "plugins": ["babel-preset-react-native-cascade"]
 }
 ```
-<br />
-### What it does
+
+## What it does
 
 **Example.jsx**
 ```Javascript
@@ -68,7 +68,8 @@ const _stylesheets = [_stylesheet];
 
 export default class Example extends Component {
   render() {
-    return <Text className="text-large container" styles={computeStyle("text-large container", _stylesheets)}>Hello</Text>
+    return <Text className="text-large container" 
+        styles={computeStyle("text-large container", _stylesheets)}>Hello</Text>
   }
 }
 

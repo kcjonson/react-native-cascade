@@ -5,7 +5,9 @@ const resolveDeep = require('resolve');
 
 module.exports = function ImportDeclaration(babel, path, state) {
   const t = babel.types;
+
   // TODO: Handle named imports
+
   if (path.node.source
       && path.node.source.type === 'StringLiteral'
       && path.node.source.value.endsWith('.css')) {

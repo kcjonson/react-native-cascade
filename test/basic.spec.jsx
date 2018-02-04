@@ -12,7 +12,7 @@ it('matches the snapshot', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('creates a style node', () => {
+it('creates a style node with appropriate style', () => {
   const com = shallow(<BasicComponent />);
   const hasStylesNode = com.find({className: 'text-large container'});
   expect(hasStylesNode.prop('style')).toMatchObject({color: 'red', fontSize: 24});

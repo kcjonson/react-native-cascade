@@ -142,6 +142,7 @@ module.exports = function (babel) { // eslint-disable-line func-names
         if (styleExpressionValue) {
           // TODO: Handle the case where the style= tag already exists on the node
           let styleExpression;
+
           if (t.isObjectExpression(styleExpressionValue)) {
             styleExpression = styleExpressionValue;
           }

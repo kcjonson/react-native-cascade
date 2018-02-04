@@ -1,18 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  className="text-large container"
-  ellipsizeMode="tail"
-  style={
-    Object {
-      "color": "red",
-      "fontSize": 24,
+<View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    className="text-large container"
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "red",
+        "fontSize": 24,
+      }
     }
-  }
->
-  Hello
-</Text>
+  >
+    Hello
+  </Text>
+</View>
 `;

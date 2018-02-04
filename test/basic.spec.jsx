@@ -4,6 +4,7 @@ import renderer from 'react-test-renderer';
 import {shallow} from 'enzyme';
 import BasicComponent from './BasicComponent';
 
+
 it('matches the snapshot', () => {
   const tree = renderer
     .create(<BasicComponent />)
@@ -23,5 +24,11 @@ it("doesn't create style tags for nodes with unmatched selectors", () => {
   expect(hasStylesNode.prop('style')).toBeUndefined();
 });
 
+it('doesnt have the runtime when not needed', () => {
+  const com = shallow(<BasicComponent />);
+  expect(() => {
+    com.instance().getComputestyleRuntime();
+  }).toThrowError();
+});
 
-// TODO: Test to make sure the runtime isn't included when its not needed
+// TODO: expect a warning at build time if a style is undec

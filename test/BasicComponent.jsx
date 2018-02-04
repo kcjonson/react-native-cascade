@@ -4,8 +4,14 @@ import {View, Text} from 'react-native';
 import './stylesheet_1.css';
 import './stylesheet_2.css';
 
-/* eslint-disable react/prefer-stateless-function */
+
+/* eslint-disable react/prefer-stateless-function, class-methods-use-this */
 export default class BasicComponent extends Component {
+
+  getComputestyleRuntime() {
+    return computeStyle; // eslint-disable-line no-undef
+  }
+
   render() {
     return (
       <View>
@@ -14,3 +20,9 @@ export default class BasicComponent extends Component {
       </View>);
   }
 }
+
+/*
+
+<Text className="text-large container" style={{color: 'pink'}}>Hello</Text>
+<Text className="text-medium" style={{color: 'pink'}}>World</Text>
+*/

@@ -1,6 +1,7 @@
 {
   "globals": {
     "it": true,
-    "expect": true
+    "expect": true,
+    "jest": true
   }
 }

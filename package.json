@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "unit-test": "jest",
+    "lint": "eslint ./src/**/*.{js,jsx} --quiet",
+    "test": "npm run lint && npm run unit-test",
     "compile": "babel test/VariableComponent.js --plugins=../index.js --presets=react --no-babelrc"
   },
   "repository": {
@@ -26,6 +28,7 @@
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.6.1",
     "jest": "^22.1.4",
     "react": "^16.2.0",
     "react-native": "^0.52.2",
@@ -33,5 +36,11 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "dependencies": {
+    "babylon": "^6.18.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "i": "^0.3.6",
+    "npm": "^5.6.0"
   }
 }

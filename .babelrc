@@ -1,4 +1,4 @@
 {
   "presets": ["env", "react"],
-  "plugins": ["./index.js"]
+  "plugins": ["./src/index.js"]
 }

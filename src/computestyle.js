@@ -1,4 +1,4 @@
-function computeStyle(classnames, stylesheets) { // eslint-disable-line no-unused-vars
+module.exports = function computeStyle(classnames, stylesheets) {
   const styles = {};
   stylesheets.forEach((stylesheet) => {
     stylesheet.forEach((declarationBlock) => {

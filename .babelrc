@@ -1,4 +1,4 @@
 {
-  "presets": ["env", "react", "react-native"],
+  "presets": ["env", "react-native"],
   "plugins": ["./src/index.js"]
 }

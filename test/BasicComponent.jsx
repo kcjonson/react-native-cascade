@@ -22,7 +22,6 @@ export default class BasicComponent extends Component {
 }
 
 /*
-
 <Text className="text-large container" style={{color: 'pink'}}>Hello</Text>
 <Text className="text-medium" style={{color: 'pink'}}>World</Text>
 */

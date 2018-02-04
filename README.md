@@ -45,7 +45,7 @@ export default class Example extends Component {
 ```
 
 **Example.css**
-```
+```Javascript
 module.exports = [
   ['container', [
     ['color', 'green']
@@ -57,9 +57,9 @@ module.exports = [
 ]
 ```
 
-after the 
+after the transform the file will look like this(ish)
 
-```
+```Javascript
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 

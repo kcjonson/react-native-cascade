@@ -1,7 +1,7 @@
-function computeStyle(classnames) {
+function computeStyle(classnames, stylesheets) {
   console.log('computeStyle running')
     let styles = {};
-    stylesheetsOrdered.forEach(stylesheet => {
+    stylesheets.forEach(stylesheet => {
         stylesheet.forEach(declarationBlock => {
             const selector = declarationBlock[0];
             const declarations = declarationBlock[1];

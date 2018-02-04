@@ -4,7 +4,14 @@ exports[`renders correctly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
+  className="text-large container"
   ellipsizeMode="tail"
+  style={
+    Object {
+      "color": "red",
+      "fontSize": 24,
+    }
+  }
 >
   Hello
 </Text>

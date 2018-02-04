@@ -9,22 +9,56 @@ module.exports = function(babel) {
   return {
     visitor: {
       Program: {
+        enter(path, state) {
+          state.set('stylesheetsVariable', path.scope.generateUidIdentifier('stylesheets'));
+          state.set('cssImports', [])
+        },
         exit(path, state) {
-          path.node.body.unshift(computestyleAST.program.body[0])
+          const cssImportsArray = t.ArrayExpression(state.get('cssImports'));
+          const stylesheetsVariable = state.get('stylesheetsVariable');
+          const cssImportsVariableDeclarator = t.VariableDeclarator(stylesheetsVariable, cssImportsArray);
+          const cssImportsVariableDeclaration = t.VariableDeclaration('const', [cssImportsVariableDeclarator]);
+
+          path.node.body.push(cssImportsVariableDeclaration)
+          path.node.body.push(computestyleAST.program.body[0])
         }
       },
-      JSXOpeningElement: function(path) {
-        let className;
+      ImportDeclaration(path, state) {
+        if (path.node.source
+            && path.node.source.type === 'StringLiteral'
+            && path.node.source.value.endsWith('.css')) {
+          const importDefaultId = path.scope.generateUidIdentifier('stylesheet')
+          const importDefaultSpecifier = t.ImportDefaultSpecifier(importDefaultId)
+          path.node.specifiers.push(importDefaultSpecifier)
+          state.get('cssImports').push(importDefaultId);
+
+        }
+      },
+      JSXOpeningElement(path, state) {
+        let callExpressionValue; // what goes in the computeStyle(*)
         if (path.node.attributes) {
           path.node.attributes.forEach(attribute => {
-            if (attribute.name && attribute.name.name === 'className') {
-              className = attribute.value.value;
+
+            if (attribute.name
+                && attribute.name.type === 'JSXIdentifier'
+                && attribute.name.name === 'className') {
+
+              // <* className="foo">
+              if (attribute.value.type ==='StringLiteral') {
+                callExpressionValue = attribute.value;
+              }
+
+              // <* className={foo}>
+              if (attribute.value.type ==='JSXExpressionContainer'
+                  && attribute.value.expression.type === 'Identifier') {
+                callExpressionValue = attribute.value.expression;
+              }
             }
           })
         }
-        if (className) {
-          const callExpressionValue = t.StringLiteral(className);
-          const callExpression = t.CallExpression(t.Identifier('computeStyle'), [callExpressionValue])
+
+        if (callExpressionValue) {
+          const callExpression = t.CallExpression(t.Identifier('computeStyle'), [callExpressionValue, state.get('stylesheetsVariable')])
           const styleAttributeIdentifier = t.JSXIdentifier('style')
           const expressionContainer = t.JSXExpressionContainer(callExpression)
           const styleAttribute = t.JSXAttribute(styleAttributeIdentifier, expressionContainer)

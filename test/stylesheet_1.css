@@ -1,5 +1,5 @@
 module.exports = [
-  ['container', [
+  ['.container', [
     ['color', 'blue']
   ]]
 ]

@@ -3,7 +3,7 @@ const computestyle = require('./computestyle');
 module.exports = function JSXOpeningElement(babel, path, state) {
 
   const t = babel.types;
-  let styleExpressionValue; // what goes in the style=* bits
+  let styleExpressionValue = false; // what goes in the style=* bits
   let existingStyleAttribute;
   if (path.node.attributes) {
     path.node.attributes.forEach(attribute => {
@@ -129,7 +129,7 @@ module.exports = function JSXOpeningElement(babel, path, state) {
               default:
                 // Perhaps this should be an error. Babel will transpile this, but
                 // it will cause a runtime error.
-                console.warn('Encountered a style attribute that was not an expression');
+                // console.warn('Encountered a style attribute that was not an expression');
             }
 
             break;

@@ -7,18 +7,28 @@ module.exports = function computeStyle(classnames, stylesheets) {
   });
   stylesheets.forEach(stylesheet => {
     stylesheet.forEach(declarationBlock => {
-      const selector = declarationBlock[0];
-      const declarations = declarationBlock[1];
-      classnamesArray.forEach(classname => {
-        if (classname === selector) {
-          declarations.forEach(declaration => {
-            const property = declaration[0];
-            const value = declaration[1];
-            styles[property] = value;
+      // TODO: Handle more combinators >, + not just ' '
+      const selectors = declarationBlock[0].split(' ');
+      if (selectors.length > 1) {
+        console.warn('child selectors are not supported');
+      } else {
+        const selector = selectors[0];
+        if (selector.indexOf('.') !== 0) {
+          console.warn('the class selector "." is currently the only supported selector');
+        } else {
+          const declarations = declarationBlock[1];
+          classnamesArray.forEach(classname => {
+            if (`.${classname}` === selector) {
+              declarations.forEach(declaration => {
+                const property = declaration[0];
+                const value = declaration[1];
+                styles[property] = value;
+              });
+              classnameStatus[classname] = true;
+            }
           });
-          classnameStatus[classname] = true;
         }
-      });
+      }
     });
   });
 

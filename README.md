@@ -3,7 +3,7 @@
 [![Travis Status](https://travis-ci.org/kcjonson/react-native-cascade.svg?branch=master)]()
 
 
-react-native cascade is a Babel plugin that will pair css declarations in imported stylesheets with nodes matching their selectors in JSX, automatically.
+react-native-cascade is a Babel plugin that will pair css declarations in imported stylesheets with nodes matching their selectors in JSX, automatically.
 
 ## Goals
 - Reduce boilerplate and unnecessary dev effort caused by manually pairing React Native stylesheets with JSX nodes
@@ -82,10 +82,10 @@ There is a webpack loader under development that will automatically translate a 
 
 ```Javascript
 module.exports = [
-  ['container', [
+  ['.container', [
     ['color', 'green']
   ]],
-  ['text-large', [
+  ['.text-large', [
     ['fontSize', 24],
     ['color', 'red']
   ]]
@@ -119,6 +119,7 @@ function computeStyle(classNames, stylesheets) {...}
 - Support node type selectors `View {}`;
 - Support child selectors `View .container {}`
 - Release webpack plugin that javascriptifies stylesheets, possibly a gulp build step as well
+- Double check that JSX snippets outside the render method work
 - [maybe] Implement property inheritance within a single component scope (style won't inherit from one component to another, but will within a component)
 
 ## Footnote - What does "cascade" mean anyway?

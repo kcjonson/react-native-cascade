@@ -1,8 +1,8 @@
 module.exports = [
-  ['container', [
+  ['.container', [
     ['color', 'green']
   ]],
-  ['text-large', [
+  ['.text-large', [
     ['fontSize', 24],
     ['color', 'red']
   ]]

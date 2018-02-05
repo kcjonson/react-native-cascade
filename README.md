@@ -53,11 +53,14 @@ Classnames as variables require that the runtime is included, which is added aut
 
 ## Selectors
 
-Curently now only the class selector is supported `.component {}` and no nesting
+Curently, only the basic class selector is supported `.component {}`
+
+Stay tuned for the type selector `View {}` child selectors `View .component{}`
 
 ## How it works
 
 **Example.jsx**
+
 This component should look very familiar to anyone who as worked with React on web and have bundler/loader that handles css. The popular Facebook [create react app](https://github.com/facebook/create-react-app) boilerplate project uses webpack and by default ships with support to [add stylesheets](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet)
 
 ```Javascript
@@ -74,6 +77,7 @@ export default class Example extends Component {
 ```
 
 **Example.css**
+
 There is a webpack loader under development that will automatically translate a real stylesheet into this syntax. Its not pubically available yet, but stay tuned. This will allow developers to write normal css, which is familiar and plays nicer with editors. For the time being, external stylesheets must be defined in the following array syntax and use React Native declaration syntax, not web spec.
 
 ```Javascript

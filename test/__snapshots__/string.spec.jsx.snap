@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the snapshot for a string className attribute 1`] = `
+<View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    className="text-large container"
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "red",
+        "fontSize": 24,
+      }
+    }
+    test-id="base"
+  >
+    Hello
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    className="text-medium"
+    ellipsizeMode="tail"
+    test-id="unmatched"
+  >
+    World
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    className="text-large container"
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "red",
+          "fontSize": 24,
+        },
+        Object {
+          "color": "pink",
+        },
+      ]
+    }
+    test-id="style-object"
+  >
+    Hello
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    className="text-large container"
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "red",
+          "fontSize": 24,
+        },
+        Array [
+          Object {
+            "color": "pink",
+          },
+        ],
+      ]
+    }
+    test-id="style-array"
+  >
+    Hello
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    className="text-medium"
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "pink",
+      }
+    }
+    test-id="style-unmatched"
+  >
+    World
+  </Text>
+</View>
+`;

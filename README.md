@@ -28,9 +28,38 @@ add it to the plugins list in your `.babelrc`
 }
 ```
 
-## What it does
+## Supported JSX
+
+### Precompiled at build time
+These cases can be pre-compiled at build time and do not include the runtime
+
+| JSX | Description |
+| --- | --- |
+| `<* className="text-large">` |Single string classes |
+| `<* className="text-large container">` |Mutliple string classes |
+| `<* className="text-large" style={{color: 'red'}}>` |Single and mutliple class names when a style attribute is also defined as an object |
+| `<* className="text-large" style={[{color: 'red'}]}>` |Single and mutliple class names when a style attribute is also defined as an array |
+
+
+### Will include the runtime
+Classnames as variables require that the runtime is included, which is added automatically. The runtime is small and has zero depdndencies, but there is still a small performance impact of calculating the cascade on every render, since the value of the class name(s) may have changed
+
+| JSX | Description |
+| --- | --- |
+| `<* className={foo}>`| Class names as variables |
+|`<* className={foo} style={{color: 'red'}}>` | Class names as variables when a style attribute is also defined as an object |
+| `<* className={foo} style={[{color: 'red'}]}>` | Class names as variables when a style attribute is also defined as an array |
+
+
+## Selectors
+
+Curently now only the class selector is supported `.component {}` and no nesting
+
+## How it works
 
 **Example.jsx**
+This component should look very familiar to anyone who as worked with React on web and have bundler/loader that handles css. The popular Facebook [create react app](https://github.com/facebook/create-react-app) boilerplate project uses webpack and by default ships with support to [add stylesheets](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet)
+
 ```Javascript
 import React, { Component } from 'react';
 import { Text } from 'react-native';
@@ -45,6 +74,8 @@ export default class Example extends Component {
 ```
 
 **Example.css**
+There is a webpack loader under development that will automatically translate a real stylesheet into this syntax. Its not pubically available yet, but stay tuned. This will allow developers to write normal css, which is familiar and plays nicer with editors. For the time being, external stylesheets must be defined in the following array syntax and use React Native declaration syntax, not web spec.
+
 ```Javascript
 module.exports = [
   ['container', [
@@ -77,18 +108,13 @@ export default class Example extends Component {
 function computeStyle(classNames, stylesheets) {...}
 ```
 
-
-## Selectors
-
-Right now only the class selector is supported `.component {}` and no nesting
-
 ## Roadmap
 
 - Write more tests, Find bugs, Fix bugs
 - Handle named stylesheet imports
 - Support node type selectors `View {}`;
 - Support child selectors `View .container {}`
-- Release webpack plugin that javascriptifies stylesheets, possibly gulp build step as well
+- Release webpack plugin that javascriptifies stylesheets, possibly a gulp build step as well
 - [maybe] Implement property inheritance within a single component scope (style won't inherit from one component to another, but will within a component)
 
 ## Footnote - What does "cascade" mean anyway?

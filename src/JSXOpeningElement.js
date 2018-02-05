@@ -5,8 +5,6 @@ module.exports = function JSXOpeningElement(babel, path, state) {
   const t = babel.types;
   let styleExpressionValue; // what goes in the style=* bits
   let existingStyleAttribute;
-  let newStyleAttribute;
-
   if (path.node.attributes) {
     path.node.attributes.forEach(attribute => {
       if (attribute.name && attribute.name.type === 'JSXIdentifier') {
@@ -93,38 +91,37 @@ module.exports = function JSXOpeningElement(babel, path, state) {
             switch (attribute.value.type) {
               case 'JSXExpressionContainer': {
                 existingStyleAttribute = attribute;
+
+                // This code isn't needed at the moment, but its left here in case we
+                // need special handling for various types in the future.
+
                 // eslint-disable-next-line prefer-destructuring
-                const expression = attribute.value.expression;
-                switch (expression.type) {
-
-                  // <* className=* style={foo}>
-                  // transpiles into <* className=** style={[**, foo]}
-                  case 'Identifier': {
-                    newStyleAttribute = t.ArrayExpression([t.StringLiteral(attribute.value.value)]);
-                    break;
-                  }
-
-                  // <* style={{*}}>
-                  case 'ObjectExpression': {
-                    // TODO: Handle objects for styles
-                    console.warn('Objects are not handled yet, sorry');
-                    break;
-                  }
-
-                  // <* style={[*, *, ...]} >
-                  case 'ArrayExpression': {
-                    // TODO: Handle arrays for styles
-                    console.warn('Arrays are not handled yet, sorry');
-                    break;
-                  }
-
-                  // <* style={"foo"}> Not actually sure what this does, but it
-                  // does transpile so it might appear somewhere.
-                  case 'StringLiteral':
-                  default:
-                }
-
-                break;
+                // const expression = attribute.value.expression;
+                // switch (expression.type) {
+                //
+                //   // <* className=* style={foo}>
+                //   // transpiles into <* className=** style={[**, foo]}
+                //   case 'Identifier': {
+                //     break;
+                //   }
+                //
+                //   // <* style={{*}}>
+                //   case 'ObjectExpression': {
+                //     break;
+                //   }
+                //
+                //   // <* style={[*, *, ...]} >
+                //   case 'ArrayExpression': {
+                //     break;
+                //   }
+                //
+                //   // <* style={"foo"}> Not actually sure what this does, but it
+                //   // does transpile so it might appear somewhere.
+                //   case 'StringLiteral':
+                //   default:
+                // }
+                //
+                // break;
               }
 
               case 'SequenceExpression': // <* style={foo, bar} > (is this valid?)
@@ -135,7 +132,6 @@ module.exports = function JSXOpeningElement(babel, path, state) {
                 console.warn('Encountered a style attribute that was not an expression');
             }
 
-            existingStyleAttribute = true;
             break;
           }
 
@@ -164,9 +160,10 @@ module.exports = function JSXOpeningElement(babel, path, state) {
       const styleAttribute = t.JSXAttribute(styleAttributeIdentifier, expressionContainer);
       path.node.attributes.push(styleAttribute);
     } else {
-      // TODO: FINISH THIS!!!
-      console.log(newStyleAttribute);
-      // existingStyleAttribute.replace(newStyleAttribute)
+      existingStyleAttribute.value.expression = t.ArrayExpression([
+        styleExpression,
+        existingStyleAttribute.value.expression,
+      ]);
     }
   }
 };

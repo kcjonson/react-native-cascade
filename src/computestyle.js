@@ -1,32 +1,68 @@
-module.exports = function computeStyle(classnames, stylesheets) {
+
+/*
+
+supported:
+.foo
+Text
+
+
+not supported:
+*.*
+* + *
+* > *
+Text
+*/
+
+
+module.exports = function computeStyle(classnames, stylesheets, nodeType) {
   const styles = {};
-  const classnamesArray = classnames.split(' ');
+
+  let classnamesArray = false;
   const classnameStatus = {};
-  classnamesArray.forEach(classname => {
-    classnameStatus[classname] = false;
-  });
+  if (classnames) {
+    classnamesArray = classnames.split(' ');
+    classnamesArray.forEach(classname => {
+      classnameStatus[classname] = false;
+    });
+  }
+
+  function applyDeclarations(declarations) {
+    declarations.forEach(declaration => {
+      const property = declaration[0];
+      const value = declaration[1];
+      styles[property] = value;
+    });
+  }
+
   stylesheets.forEach(stylesheet => {
     stylesheet.forEach(declarationBlock => {
-      // TODO: Handle more combinators >, + not just ' '
       const selectors = declarationBlock[0].split(' ');
+      const declarations = declarationBlock[1];
       if (selectors.length > 1) {
         console.warn('child selectors are not supported');
       } else {
         const selector = selectors[0];
-        if (selector.indexOf('.') !== 0) {
-          console.warn('the class selector "." is currently the only supported selector');
+
+        // Class selector
+        if (selector.indexOf('.') === 0) {
+
+          if (classnames) {
+            classnamesArray.forEach(classname => {
+              if (`.${classname}` === selector) {
+                applyDeclarations(declarations);
+                classnameStatus[classname] = true;
+              }
+            });
+          }
+
+        // Element selector
+        } else if (/^[A-Za-z][A-Za-z0-9 -]*$/.test(selector)) {
+          if (nodeType === selector) {
+            applyDeclarations(declarations);
+          }
+
         } else {
-          const declarations = declarationBlock[1];
-          classnamesArray.forEach(classname => {
-            if (`.${classname}` === selector) {
-              declarations.forEach(declaration => {
-                const property = declaration[0];
-                const value = declaration[1];
-                styles[property] = value;
-              });
-              classnameStatus[classname] = true;
-            }
-          });
+          console.warn(`unsupported selector encountered ${selector}`);
         }
       }
     });

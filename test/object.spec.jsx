@@ -46,32 +46,38 @@ it('has the computestyle runtime for an object className attribute', () => {
 it('creates a style node with appropriate style for an object className attribute', () => {
   const com = shallow(<ObjectComponent />);
   const hasStylesNode = com.find({'test-id': 'base'});
-  expect(hasStylesNode.prop('style')).toMatchObject({color: 'red', fontSize: 24});
+  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify({
+    color: 'red',
+    backgroundColor: 'chartreuse',
+    fontSize: 24,
+  }));
 });
 
 it('will add (merge) to an existing style definition that is an object for a object className attribute', () => {
   const com = shallow(<ObjectComponent />);
   const hasStylesNode = com.find({'test-id': 'style-object'});
-  expect(hasStylesNode.prop('style')).toMatchObject([
+  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify([
     {
       color: 'red',
+      backgroundColor: 'chartreuse',
       fontSize: 24,
     }, {
       color: 'pink',
     },
-  ]);
+  ]));
 });
 
 it('will add (merge) to an existing style definition that is an array for a object className attribute', () => {
   const com = shallow(<ObjectComponent />);
   const hasStylesNode = com.find({'test-id': 'style-array'});
-  expect(hasStylesNode.prop('style')).toMatchObject([
+  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify([
     {
       color: 'red',
+      backgroundColor: 'chartreuse',
       fontSize: 24,
     },
     [{color: 'pink'}],
-  ]);
+  ]));
 });
 
 it('warns about ummatched classnames at runtime for an object className attribute', () => {

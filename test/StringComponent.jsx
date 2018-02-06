@@ -15,15 +15,11 @@ export default class StringComponent extends Component {
     return (
       <View>
         <Text className="text-large container" test-id="base">Hello</Text>
-        <Text className="text-medium" test-id="unmatched">World</Text>
         <Text className="text-large container" style={{color: 'pink'}} test-id="style-object">Hello</Text>
+        <Text style={{color: 'pink'}} className="text-large container" test-id="style-object-reverse">Hello</Text>
         <Text className="text-large container" style={[{color: 'pink'}]} test-id="style-array">Hello</Text>
-        <Text className="text-medium" style={{color: 'pink'}} test-id="style-unmatched">World</Text>
+        <View className="text-medium" style={{backgroundColor: 'pink'}} test-id="style-unmatched" />
+        <View className="text-medium" test-id="unmatched" />
       </View>);
   }
 }
-
-/*
-
-
-*/

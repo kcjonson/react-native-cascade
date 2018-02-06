@@ -53,9 +53,14 @@ Classnames as variables require that the runtime is included, which is added aut
 
 ## Selectors
 
-Curently, only the basic class selector is supported `.component {}`
+Currently we only support very basic selectors:
 
-Stay tuned for the type selector `View {}` child selectors `View .component{}`
+| Selector | Example |
+| --- | --- |
+| class | `.component {}`|
+| type | `View {}` |
+
+Stay tuned for child selectors `View .component{}` which are a bit more complicated to implement
 
 ## How it works
 
@@ -88,6 +93,9 @@ module.exports = [
   ['.text-large', [
     ['fontSize', 24],
     ['color', 'red']
+  ]],
+  ['Text', [
+    ['backgroundColor', 'chartreuse']
   ]]
 ]
 ```
@@ -116,7 +124,6 @@ function computeStyle(classNames, stylesheets) {...}
 
 - Write more tests, Find bugs, Fix bugs
 - Handle named stylesheet imports
-- Support node type selectors `View {}`;
 - Support child selectors `View .container {}`
 - Release webpack plugin that javascriptifies stylesheets, possibly a gulp build step as well
 - Double check that JSX snippets outside the render method work

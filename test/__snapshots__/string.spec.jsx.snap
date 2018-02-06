@@ -9,6 +9,7 @@ exports[`matches the snapshot for a string className attribute 1`] = `
     ellipsizeMode="tail"
     style={
       Object {
+        "backgroundColor": "chartreuse",
         "color": "red",
         "fontSize": 24,
       }
@@ -20,20 +21,12 @@ exports[`matches the snapshot for a string className attribute 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    className="text-medium"
-    ellipsizeMode="tail"
-    test-id="unmatched"
-  >
-    World
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
     className="text-large container"
     ellipsizeMode="tail"
     style={
       Array [
         Object {
+          "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
         },
@@ -54,6 +47,28 @@ exports[`matches the snapshot for a string className attribute 1`] = `
     style={
       Array [
         Object {
+          "backgroundColor": "chartreuse",
+          "color": "red",
+          "fontSize": 24,
+        },
+        Object {
+          "color": "pink",
+        },
+      ]
+    }
+    test-id="style-object-reverse"
+  >
+    Hello
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    className="text-large container"
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
         },
@@ -68,19 +83,18 @@ exports[`matches the snapshot for a string className attribute 1`] = `
   >
     Hello
   </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
+  <View
     className="text-medium"
-    ellipsizeMode="tail"
     style={
       Object {
-        "color": "pink",
+        "backgroundColor": "pink",
       }
     }
     test-id="style-unmatched"
-  >
-    World
-  </Text>
+  />
+  <View
+    className="text-medium"
+    test-id="unmatched"
+  />
 </View>
 `;

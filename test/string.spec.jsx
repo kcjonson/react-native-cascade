@@ -22,38 +22,47 @@ it('matches the snapshot for a string className attribute', () => {
 it('creates a style node with appropriate style for a string className attribute', () => {
   const com = shallow(<StringComponent />);
   const hasStylesNode = com.find({'test-id': 'base'});
-  expect(hasStylesNode.prop('style')).toMatchObject({color: 'red', fontSize: 24});
+  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify({
+    color: 'red',
+    backgroundColor: 'chartreuse',
+    fontSize: 24,
+  }));
+});
+
+it('will add (merge) to an existing style definition for a string className attribute', () => {
+  const com = shallow(<StringComponent />);
+  ['style-object', 'style-object-reverse'].forEach(testId => {
+    const hasStylesNode = com.find({'test-id': testId});
+    expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify([
+      {
+        color: 'red',
+        backgroundColor: 'chartreuse',
+        fontSize: 24,
+      }, {
+        color: 'pink',
+      },
+    ]));
+  });
+});
+
+it('will add (merge) to an existing style definition that is an array for a string className attribute', () => {
+  const com = shallow(<StringComponent />);
+  const hasStylesNode = com.find({'test-id': 'style-unmatched'});
+  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify({
+    backgroundColor: 'pink',
+  }));
+});
+
+it("doesn't add to style tags for string className attributes with unmatched selectors", () => {
+  const com = shallow(<StringComponent />);
+  const hasStylesNode = com.find({'test-id': 'unmatched'});
+  expect(hasStylesNode.prop('style')).toBeUndefined();
 });
 
 it("doesn't create style tags for string className attributes with unmatched selectors", () => {
   const com = shallow(<StringComponent />);
   const hasStylesNode = com.find({'test-id': 'unmatched'});
   expect(hasStylesNode.prop('style')).toBeUndefined();
-});
-
-it('will add (merge) to an existing style definition that is an object for a string className attribute', () => {
-  const com = shallow(<StringComponent />);
-  const hasStylesNode = com.find({'test-id': 'style-object'});
-  expect(hasStylesNode.prop('style')).toMatchObject([
-    {
-      color: 'red',
-      fontSize: 24,
-    }, {
-      color: 'pink',
-    },
-  ]);
-});
-
-it('will add (merge) to an existing style definition that is an array for a string className attribute', () => {
-  const com = shallow(<StringComponent />);
-  const hasStylesNode = com.find({'test-id': 'style-array'});
-  expect(hasStylesNode.prop('style')).toMatchObject([
-    {
-      color: 'red',
-      fontSize: 24,
-    },
-    [{color: 'pink'}],
-  ]);
 });
 
 it('doesnt have the runtime when not needed', () => {

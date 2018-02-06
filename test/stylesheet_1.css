@@ -1,5 +1,9 @@
 module.exports = [
   ['.container', [
     ['color', 'blue']
+  ]],
+  ['Text', [
+    ['color', 'salmon'],
+    ['backgroundColor', 'chartreuse']
   ]]
 ]

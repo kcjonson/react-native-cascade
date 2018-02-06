@@ -9,6 +9,7 @@ exports[`matches the snapshot for for an object className attribute 1`] = `
     ellipsizeMode="tail"
     style={
       Object {
+        "backgroundColor": "chartreuse",
         "color": "red",
         "fontSize": 24,
       }
@@ -25,6 +26,7 @@ exports[`matches the snapshot for for an object className attribute 1`] = `
     style={
       Array [
         Object {
+          "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
         },
@@ -45,6 +47,7 @@ exports[`matches the snapshot for for an object className attribute 1`] = `
     style={
       Array [
         Object {
+          "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
         },

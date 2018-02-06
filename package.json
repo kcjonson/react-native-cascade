@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-react-native-cascade",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A babel transform to apply matching css styles to React Native components",
   "main": "./src/index.js",
   "scripts": {

@@ -2,12 +2,13 @@
 const computestyleExpression = require('./computestyleExpression');
 
 module.exports = function JSXOpeningElement(babel, path, state) {
-
+  // console.log('JSXOpeningElement')
   const t = babel.types;
   let styleExpressionValue = false; // what goes in the style=* bits
   let existingStyleAttribute;
   let nodeClassNameAttribute = false;
   let nodeStyleAttribute = false;
+
 
   if (path.node.attributes) {
     path.node.attributes.forEach(attribute => {
@@ -42,7 +43,14 @@ module.exports = function JSXOpeningElement(babel, path, state) {
         if (nodeClassNameAttribute && nodeClassNameAttribute.value) {
           classnames = nodeClassNameAttribute.value.value;
         }
-        styleExpressionValue = computestyleExpression(babel, path, state, classnames);
+
+        // Cant inline styles in dev mode since incremental builds wont trigger
+        // for changed stylesheets. This should become a param.
+        if (false) {
+          styleExpressionValue = computestyleExpression(babel, path, state, classnames);
+        } else {
+          styleExpressionValue = t.StringLiteral(classnames);
+        }
         break;
       }
       // <* className={*}>
@@ -54,7 +62,6 @@ module.exports = function JSXOpeningElement(babel, path, state) {
         // <* className={foo}>
         if (nodeClassNameAttribute.value.expression.type === 'Identifier') {
           styleExpressionValue = nodeClassNameAttribute.value.expression;
-          state.set('computestyleRuntimeRequired', true);
         }
         // TODO: <* className={'foo'}>
         // TODO: <* className={`foo`}>
@@ -141,15 +148,14 @@ module.exports = function JSXOpeningElement(babel, path, state) {
 
     // If styleExpression is a variable or other dynmaic expression then we have
     // to write in the runner
-    if (t.isIdentifier(styleExpressionValue)) {
+    if (t.isIdentifier(styleExpressionValue) || t.isStringLiteral(styleExpressionValue)) {
       styleExpression = t.CallExpression(t.Identifier('computeStyle'), [
         styleExpressionValue,
         state.get('stylesheetsVariable'),
         t.StringLiteral(path.node.name.name),
       ]);
+      state.set('computestyleRuntimeRequired', true);
     }
-
-    console.log('existing style', !!existingStyleAttribute);
 
     if (!existingStyleAttribute) {
       const styleAttributeIdentifier = t.JSXIdentifier('style');

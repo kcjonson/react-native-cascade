@@ -2,8 +2,12 @@
 
 const {dirname, resolve} = require('path');
 const resolveDeep = require('resolve');
+const fs = require('fs');
+const p = require('path');
+const parseStylesheet = require('./stylesheetParser');
 
 module.exports = function ImportDeclaration(babel, path, state) {
+  // console.log('ImportDeclaration')
   const t = babel.types;
 
   // TODO: Handle named imports
@@ -33,7 +37,12 @@ module.exports = function ImportDeclaration(babel, path, state) {
       basedir: resolve(process.cwd(), fileDirname),
     });
     if (stylesheetPath) {
-      const stylesheet = require(stylesheetPath);
+      // TODO: Implement resolvers that can be configured like webpack here.
+      const rawStylesheet = fs.readFileSync(p.resolve(__dirname, stylesheetPath), 'utf8');
+      const stylesheet = parseStylesheet(rawStylesheet);
+
+      //console.log(JSON.stringify(stylesheet, null, 2));
+      // const stylesheet = require(stylesheetPath);
       const stylesheets = state.get('stylesheetsIndexed');
       stylesheets[importDefaultId.name] = stylesheet;
     } else {

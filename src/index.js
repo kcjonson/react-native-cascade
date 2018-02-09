@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('path');
+const p = require('path');
 const babylon = require('babylon');
 const JSXOpeningElement = require('./JSXOpeningElement');
 const ImportDeclaration = require('./ImportDeclaration');
@@ -8,7 +8,7 @@ const ImportDeclaration = require('./ImportDeclaration');
 // but we're also going to write it into the source file if need be, so we load it
 // twice. This seems mildly inefficent. Also, the way we're grabbing the expression
 // here is a bit fragile, if the structure changes, this will barf hard.
-const computestyleString = fs.readFileSync(path.resolve(__dirname, './computestyle.js'), 'utf8');
+const computestyleString = fs.readFileSync(p.resolve(__dirname, './computestyle.js'), 'utf8');
 const computestyleAST = babylon.parse(computestyleString).program.body[0].expression.right;
 
 module.exports = function (babel) { // eslint-disable-line func-names
@@ -18,6 +18,7 @@ module.exports = function (babel) { // eslint-disable-line func-names
 
       Program: {
         enter(path, state) {
+          // console.log('Program.enter')
           state.set('stylesheetsVariable', path.scope.generateUidIdentifier('stylesheets'));
           state.set('cssImports', []); // Array of imports in the order they were imported (important)
           state.set('stylesheetsIndexed', {}); // Contents of stylesheets indexed by generated id

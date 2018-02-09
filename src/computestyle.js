@@ -35,37 +35,39 @@ module.exports = function computeStyle(classnames, stylesheets, nodeType) {
   }
 
   stylesheets.forEach(stylesheet => {
-    stylesheet.forEach(declarationBlock => {
-      const selectors = declarationBlock[0].split(' ');
-      const declarations = declarationBlock[1];
-      if (selectors.length > 1) {
-        console.warn('child selectors are not supported');
-      } else {
-        const selector = selectors[0];
-
-        // Class selector
-        if (selector.indexOf('.') === 0) {
-
-          if (classnames) {
-            classnamesArray.forEach(classname => {
-              if (`.${classname}` === selector) {
-                applyDeclarations(declarations);
-                classnameStatus[classname] = true;
-              }
-            });
-          }
-
-        // Element selector
-        } else if (/^[A-Za-z][A-Za-z0-9 -]*$/.test(selector)) {
-          if (nodeType === selector) {
-            applyDeclarations(declarations);
-          }
-
+    if (stylesheet.forEach && stylesheet.length > 0) {
+      stylesheet.forEach(declarationBlock => {
+        const selectors = declarationBlock[0].split(' ');
+        const declarations = declarationBlock[1];
+        if (selectors.length > 1) {
+          console.warn('child selectors are not supported');
         } else {
-          console.warn(`unsupported selector encountered ${selector}`);
+          const selector = selectors[0];
+
+          // Class selector
+          if (selector.indexOf('.') === 0) {
+
+            if (classnames) {
+              classnamesArray.forEach(classname => {
+                if (`.${classname}` === selector) {
+                  applyDeclarations(declarations);
+                  classnameStatus[classname] = true;
+                }
+              });
+            }
+
+          // Element selector
+          } else if (/^[A-Za-z][A-Za-z0-9 -]*$/.test(selector)) {
+            if (nodeType === selector) {
+              applyDeclarations(declarations);
+            }
+
+          } else {
+            console.warn(`unsupported selector encountered ${selector}`);
+          }
         }
-      }
-    });
+      });
+    }
   });
 
   const classnamesUnmatched = [];

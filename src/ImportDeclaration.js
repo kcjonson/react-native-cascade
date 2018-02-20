@@ -14,7 +14,7 @@ module.exports = function ImportDeclaration(babel, path, state) {
 
   if (path.node.source
       && path.node.source.type === 'StringLiteral'
-      && (path.node.source.value.endsWith('.css') || path.node.source.value.endsWith('.less')) {
+      && (path.node.source.value.endsWith('.css') || path.node.source.value.endsWith('.less'))) {
     const stylesheetImport = path.node.source.value;
     const importDefaultId = path.scope.generateUidIdentifier('stylesheet');
     const importDefaultSpecifier = t.ImportDefaultSpecifier(importDefaultId);

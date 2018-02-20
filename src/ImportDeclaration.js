@@ -41,7 +41,7 @@ module.exports = function ImportDeclaration(babel, path, state) {
       const rawStylesheet = fs.readFileSync(p.resolve(__dirname, stylesheetPath), 'utf8');
       const stylesheet = parseStylesheet(rawStylesheet);
 
-      //console.log(JSON.stringify(stylesheet, null, 2));
+      // console.log(JSON.stringify(stylesheet, null, 2));
       // const stylesheet = require(stylesheetPath);
       const stylesheets = state.get('stylesheetsIndexed');
       stylesheets[importDefaultId.name] = stylesheet;

@@ -3,7 +3,7 @@ const postcss = require('postcss');
 
 module.exports = function parseStylesheet(rawSource) {
   // console.log('parseStylesheet', rawSource)
-  const source = rawSource.replace(/(\.?[\d]+)rem/g, (str, val) => (val * 16));
+  const source = rawSource.replace(/(\.?[\d]+)rem/g, (str, val) => (`${val * 16}px`));
   const root = postcss.parse(source);
   let stylesheet = root.nodes.filter(node => node.type === 'rule');
   stylesheet = stylesheet.map(rule => {

@@ -11,10 +11,7 @@ module.exports = function parseStylesheet(rawSource) {
     const declarations = [];
     declarationsRaw.forEach(declaration => {
       const property = cssToReactNative.getPropertyName(declaration.prop || '');
-      const valuesOrProperties = cssToReactNative.getStylesForProperty(
-        property,
-        declaration.value,
-      );
+      const valuesOrProperties = cssToReactNative.getStylesForProperty(property, declaration.value);
       // this is super gross.
       // https://github.com/styled-components/css-to-react-native
       // sigh.

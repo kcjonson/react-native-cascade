@@ -41,8 +41,10 @@
   "dependencies": {
     "babylon": "^6.18.0",
     "css-to-react-native": "^2.1.1",
+    "plugin-error": "^1.0.1",
     "postcss": "^6.0.17",
-    "resolve": "^1.5.0"
+    "resolve": "^1.5.0",
+    "through2": "^2.0.3"
   },
   "jest": {
     "preset": "react-native",

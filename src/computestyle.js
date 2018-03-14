@@ -15,7 +15,7 @@ Text
 
 
 module.exports = function computeStyle(classnames, stylesheets = [], nodeType) {
-  console.log('computeStyle', classnames, stylesheets, nodeType)
+  console.log('computeStyle', classnames, stylesheets, nodeType);
 
   const styles = {};
 

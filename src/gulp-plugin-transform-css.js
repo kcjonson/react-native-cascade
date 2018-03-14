@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
-'use strict';
+
+
 const through = require('through2');
 const PluginError = require('plugin-error');
 const stylesheetParser = require('./stylesheetParser');

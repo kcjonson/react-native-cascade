@@ -25,6 +25,7 @@ module.exports = options => {
       file.contents = Buffer.from(moduleStylesheet);
       this.push(file);
     } catch (err) {
+      // TODO: Make sure error log says what file has the problem!
       // Something weird is happening with errors. Need to figure that out... later.
       console.log(err);
       cb(new PluginError('gulp-plugin-transform-css', err));

@@ -1,9 +1,12 @@
-module.exports = [
-  ['.container', [
-    ['color', 'blue']
-  ]],
-  ['Text', [
-    ['color', 'salmon'],
-    ['backgroundColor', 'chartreuse']
-  ]]
-]
+.container {
+  color: blue;
+}
+
+.container.primary {
+  font-size: 2rem;
+}
+
+Text {
+  color: salmon;
+  background-color: chartreuse;
+}

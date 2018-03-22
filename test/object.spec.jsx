@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {shallow} from 'enzyme';
 import ObjectComponent from './ObjectComponent';
-import ObjectComponentUndeclaredStyle from './ObjectComponentUndeclaredStyle';
+// import ObjectComponentUndeclaredStyle from './ObjectComponentUndeclaredStyle';
 
 
 /*
@@ -80,10 +80,12 @@ it('will add (merge) to an existing style definition that is an array for a obje
   ]));
 });
 
-it('warns about ummatched classnames at runtime for an object className attribute', () => {
-  const spy = {};
-  spy.console = jest.spyOn(global.console, 'warn').mockImplementation(() => {});
-  shallow(<ObjectComponentUndeclaredStyle />);
-  expect(console.warn).toBeCalled(); // eslint-disable-line no-console
-  spy.console.mockRestore();
-});
+// This is really log cluttering, so its currently turned off.
+
+// it('warns about ummatched classnames at runtime for an object className attribute', () => {
+//   const spy = {};
+//   spy.console = jest.spyOn(global.console, 'warn').mockImplementation(() => {});
+//   shallow(<ObjectComponentUndeclaredStyle />);
+//   expect(console.warn).toBeCalled(); // eslint-disable-line no-console
+//   spy.console.mockRestore();
+// });

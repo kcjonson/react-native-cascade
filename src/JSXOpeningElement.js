@@ -76,10 +76,12 @@ module.exports = function JSXOpeningElement(babel, path, state) {
         console.warn('Encountered a className attribute that was neither a string or a expression. Doing nothing ... aparently.');
     }
   } else {
+    // Even if there isn't a className tag, we need to try and compute the style
+    // to match node type selectors. Since these arn't variable, they can get inlined
     styleExpressionValue = computestyleExpression(babel, path, state);
   }
 
-
+  // Currently no-op
   if (nodeStyleAttribute) {
 
     // <* style={*}>  => <* style={[STYLE, *]}>

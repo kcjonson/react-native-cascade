@@ -1,13 +1,13 @@
 {
   "name": "babel-preset-react-native-cascade",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A babel transform to apply matching css styles to React Native components",
   "main": "./src/index.js",
   "scripts": {
     "prepublishOnly": "npm run test",
-    "unit-test": "jest",
+    "unit-test": "jest --no-cache",
     "lint": "eslint ./**/*.{js,jsx} --quiet",
-    "test": "npm run lint"
+    "test": "npm run lint && npm run unit-test"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "react-test-renderer": "^16.2.0"
   },
   "dependencies": {
+    "@babel/template": "^7.0.0-beta.42",
     "babylon": "^6.18.0",
     "css-to-react-native": "^2.1.1",
     "plugin-error": "^1.0.1",

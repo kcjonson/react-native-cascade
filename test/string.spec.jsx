@@ -29,6 +29,17 @@ it('creates a style node with appropriate style for a string className attribute
   }));
 });
 
+it('matches mutliple classname selectors', () => {
+  const com = shallow(<StringComponent />);
+  const hasStylesNode = com.find({'test-id': 'mutliple-selector'});
+  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify({
+    color: 'green',
+    fontSize: 32,
+    backgroundColor: 'chartreuse',
+  }));
+});
+
+
 it('will add (merge) to an existing style definition for a string className attribute', () => {
   const com = shallow(<StringComponent />);
   ['style-object', 'style-object-reverse'].forEach(testId => {
@@ -48,28 +59,28 @@ it('will add (merge) to an existing style definition for a string className attr
 it('will add (merge) to an existing style definition that is an array for a string className attribute', () => {
   const com = shallow(<StringComponent />);
   const hasStylesNode = com.find({'test-id': 'style-unmatched'});
-  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify({
-    backgroundColor: 'pink',
-  }));
+  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe('[null,{"backgroundColor":"pink"}]');
 });
 
-it("doesn't add to style tags for string className attributes with unmatched selectors", () => {
-  const com = shallow(<StringComponent />);
-  const hasStylesNode = com.find({'test-id': 'unmatched'});
-  expect(hasStylesNode.prop('style')).toBeUndefined();
-});
+// These are tests for build time optimizations that are currently turned off.
 
-it("doesn't create style tags for string className attributes with unmatched selectors", () => {
-  const com = shallow(<StringComponent />);
-  const hasStylesNode = com.find({'test-id': 'unmatched'});
-  expect(hasStylesNode.prop('style')).toBeUndefined();
-});
+// it("doesn't add to style tags for string className attributes with unmatched selectors", () => {
+//   const com = shallow(<StringComponent />);
+//   const hasStylesNode = com.find({'test-id': 'unmatched'});
+//   expect(hasStylesNode.prop('style')).toBeUndefined();
+// });
+//
+// it("doesn't create style tags for string className attributes with unmatched selectors", () => {
+//   const com = shallow(<StringComponent />);
+//   const hasStylesNode = com.find({'test-id': 'unmatched'});
+//   expect(hasStylesNode.prop('style')).toBeUndefined();
+// });
 
-it('doesnt have the runtime when not needed', () => {
-  const com = shallow(<StringComponent />);
-  expect(() => {
-    com.instance().getComputestyleRuntime();
-  }).toThrowError();
-});
+// it('doesnt have the runtime when not needed', () => {
+//   const com = shallow(<StringComponent />);
+//   expect(() => {
+//     com.instance().getComputestyleRuntime();
+//   }).toThrowError();
+// });
 
 // TODO: expect a warning at build time if a style is undec

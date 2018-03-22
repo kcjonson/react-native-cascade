@@ -1,9 +1,12 @@
 const computestyle = require('./computestyle');
 
 module.exports = function computeStyleExpression(babel, path, state, classnames) {
+  // console.log('computeStyleExpression')
+
   const t = babel.types;
   const stylesheetsIndexed = state.get('stylesheetsIndexed');
   const cssImports = state.get('cssImports');
+
   if (cssImports.length > 0) {
 
     // Stylesheet may have not been loaded or failed to parse.
@@ -12,14 +15,13 @@ module.exports = function computeStyleExpression(babel, path, state, classnames)
     });
 
     const stylesheetsOrdered = matchedImports.map(cssImport => stylesheetsIndexed[cssImport.name]);
-
     if (stylesheetsOrdered.length < 1) return false;
 
     const styles = computestyle(
       classnames,
       stylesheetsOrdered,
       path.node.name.name // eslint-disable-line comma-dangle
-    );
+    ) || {};
 
     const styleProperties = Object.keys(styles);
     if (styleProperties.length > 0) {

@@ -18,7 +18,7 @@ module.exports = function (babel) { // eslint-disable-line func-names
 
       Program: {
         enter(path, state) {
-          // console.log('Program.enter')
+          // console.log('Program.enter');
           state.set('stylesheetsVariable', path.scope.generateUidIdentifier('stylesheets'));
           state.set('cssImports', []); // Array of imports in the order they were imported (important)
           state.set('stylesheetsIndexed', {}); // Contents of stylesheets indexed by generated id

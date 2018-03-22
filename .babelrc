@@ -1,4 +1,6 @@
 {
   "presets": ["env", "react-native"],
-  "plugins": ["./src/index.js"]
+  "plugins": [["./src/index.js", {
+      "importStylesheets": true,
+  }]]
 }

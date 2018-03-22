@@ -21,6 +21,22 @@ exports[`matches the snapshot for a string className attribute 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
+    className="container primary"
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "backgroundColor": "chartreuse",
+        "color": "green",
+        "fontSize": 32,
+      }
+    }
+    test-id="mutliple-selector"
+  >
+    Hello
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
     className="text-large container"
     ellipsizeMode="tail"
     style={
@@ -86,14 +102,18 @@ exports[`matches the snapshot for a string className attribute 1`] = `
   <View
     className="text-medium"
     style={
-      Object {
-        "backgroundColor": "pink",
-      }
+      Array [
+        null,
+        Object {
+          "backgroundColor": "pink",
+        },
+      ]
     }
     test-id="style-unmatched"
   />
   <View
     className="text-medium"
+    style={null}
     test-id="unmatched"
   />
 </View>

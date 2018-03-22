@@ -15,6 +15,7 @@ export default class StringComponent extends Component {
     return (
       <View>
         <Text className="text-large container" test-id="base">Hello</Text>
+        <Text className="container primary" test-id="mutliple-selector">Hello</Text>
         <Text className="text-large container" style={{color: 'pink'}} test-id="style-object">Hello</Text>
         <Text style={{color: 'pink'}} className="text-large container" test-id="style-object-reverse">Hello</Text>
         <Text className="text-large container" style={[{color: 'pink'}]} test-id="style-array">Hello</Text>

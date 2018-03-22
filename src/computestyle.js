@@ -17,7 +17,7 @@ Text
 module.exports = function computeStyle(classnames, stylesheets = [], nodeType) {
   // console.log('computeStyle', classnames, stylesheets, nodeType);
 
-  const styles = {};
+  let styles = null;
 
   let classnamesArray = [];
   const classnameStatus = {};
@@ -29,6 +29,8 @@ module.exports = function computeStyle(classnames, stylesheets = [], nodeType) {
   }
 
   function applyDeclarations(declarations) {
+    // console.log('applying declarations', declarations)
+    if (!styles) styles = {};
     declarations.forEach(declaration => {
       const property = declaration[0];
       const value = declaration[1];
@@ -37,6 +39,7 @@ module.exports = function computeStyle(classnames, stylesheets = [], nodeType) {
   }
 
   function analizeSelector(selector, declarations) {
+    // console.log('analizeSelector', selector, declarations);
 
     // Class selector  (.foo)
     if (selector.indexOf('.') === 0 && selector.lastIndexOf('.') === 0) {
@@ -65,7 +68,7 @@ module.exports = function computeStyle(classnames, stylesheets = [], nodeType) {
 
 
     // Element selector  (View)
-    } else if (/^[A-Za-z][A-Za-z0-9 -]*$/.test(selector) && selector.lastIndexOf('.') === 0) {
+    } else if (/^[A-Za-z][A-Za-z0-9 -]*$/.test(selector) && selector.lastIndexOf('.') === -1) {
       if (nodeType === selector) {
         applyDeclarations(declarations);
       }
@@ -82,6 +85,7 @@ module.exports = function computeStyle(classnames, stylesheets = [], nodeType) {
   }
 
   stylesheets.forEach(stylesheet => {
+    // console.log(stylesheet)
     if (stylesheet.forEach && stylesheet.length > 0) {
       stylesheet.forEach(declarationBlock => {
         const selectors = declarationBlock[0].split(' ');
@@ -106,8 +110,12 @@ module.exports = function computeStyle(classnames, stylesheets = [], nodeType) {
 
   if (classnamesUnmatched.length > 0) {
     // TODO: Better output, include component name, path and code snippet.
-    console.warn(`Unmatched classnames found: ${classnamesUnmatched.join(' ')}`);
+    // This warning is here because if a classname on a node isn't matched it
+    // might mean that the dev extpected it do do something
+    // console.warn(`Unmatched classnames found: ${classnamesUnmatched.join(' ')}`);
   }
+
+  // console.log('returning styles', styles)
 
   return styles;
 };

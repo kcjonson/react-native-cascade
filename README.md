@@ -142,5 +142,3 @@ Mozilla has a much better description at https://developer.mozilla.org/en-US/doc
 > The cascade is an algorithm that defines how to combine property values originating from different sources. It lies at the core of CSS, as emphasized by the name: Cascading Style Sheets.
 
 The key there is the bit about **"defines how to combine property values"** which is what this project attempts to recreate for React Native. The Mozilla definition briefly touches on cascading order but doesn't dive into what happens when there are duplicate selectors of equal [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) in a single source or how ordering of declarations of a single source. There is actually quite a bit that goes on and a lengthier article on MDN titled [Cascade and inheritance](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance) goes into the details.
-
-   

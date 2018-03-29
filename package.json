@@ -4,7 +4,6 @@
   "description": "A babel transform to apply matching css styles to React Native components",
   "main": "./src/index.js",
   "scripts": {
-    "prepublishOnly": "npm run test",
     "unit-test": "jest --no-cache",
     "lint": "eslint ./**/*.{js,jsx} --quiet",
     "test": "npm run lint && npm run unit-test"

@@ -1,15 +1,12 @@
 language: node_js
 node_js:
- - "node"
+- node
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 deploy:
   provider: npm
   email: jenna.nichols@redfin.com
   api_key:
-    secure: Yg/uBTt+PRtukO2no9XiTgA4itVTEmRsU3DHTIXdW1oq+JlDppfC3kFvNUUpgoBD048Udz5BTGoXgDuS+sKDWvL4KaXd5oArRGUDmbc5zVzytzS3r+yFx2g3gWf6w5XrGtMMvf1siZmjBf1ZE3Pm/tkLwpGxt1hpZZHA+1NAk1piE6Hykg0QwHcyvnEXgUWtQGXCmXZOy7ZlPSelBC2jCdbLHjz9cSCWp+zOjlxOb+rXnGs/iYQphrB/Qy2VfzXm/KhHZFTNdF5+wiG0/657ax6FPjnnxWf19908aXVpoboqjDS58KCm/QKr2qWOwYxcS858d4NGqdtajbgObeQ6wFIdD1vQgvot4SELr6ddJ2CyofXFPOULaAF5l66NJzfSlmJuwrytjoh00BXza0rMBsrzBEF2pNui8BUfdPc+t+dY+8Dg7sdmgNwg5H+JIfrmnpxL7pzf7PPZxApRMjZ/AXSO9keZRlmFHrLrDYmf6AW5Xt3ENcU7Bgf54CG/i6TZjcu9JIKqZIsvZeVlnhQo1ViNELAwD7VilA+akWGoBN6eYAlnl5P1ogJu1S5lpJyYHQeCk9GFeJqYPQ9IYoGE4GKCpkkWjMIQvZMPc9cpE2ReWg+HtXHMGy7l/2qX5HRsKWQkXwAPpG0ygvYpZ5/VVvNJMkhbL+5xPZh9vKhzhaM=
-    repo: kcjonson/react-native-cascade
-    branch: master
-    tags: true
+    secure: f94O1i4qZ69hAaVFb5lSWTIBpHD/cHc38Xf8v0MBa0Wl7hzvXCqK5fgbEulPU3zAYDgXaxaH37U5muw1vaMpI79G9VsVdgXy0xDvN3RrfhoK/qMN7DN9MF8edLDYgM0mhiO5x1Uet0a37BCUxk+gt8aMeZECmbNRzLHOVls3ZR/QVaEx6XZ0NqoUMtfjiPfsQNmGELn6tomLku20HpTbLEblhTmKw5gAlvu8ZrAnCJgyAueJwhJ/rTI6ahK3dy9b/rS8GTKGJBUpOcnM0AYsqcQp3SSeLDaIu4F2tNigtjyHLnG5OGEV3M0Xu7ieSveBxqWsEFgu/b4vxV3jraqnS0+oYBAwuqWQ/ek0du9kY3g0wh1HMlMo3SNlW2geago/fXVDwDDy9fvKhhg9dpzGhCOez9w8c8aRIjsvZAARecQP766ln+gLAuNh4orpb1HB5rxQ6WThV3XDHqDRWS8C/NRGKC5YrVtKKne9KyvZM2ev5zJO3AjOul1rnLjKxrf/kKoEFlSpAfHivzTdD87EwSqYFvPOAterOEQi+mcJ+gsmb7GMmtPxJW7/DsKt+mJ+UGYKYWwP3HxY7qyyt78MKJiYQ1pp7wrsUQ4eHBy0BQkCcXk73qCA41ofELVN3F6KyebZOXwlieVVBiFZ32UdwKBxoRvtZXsB8B/1UROyDGM=

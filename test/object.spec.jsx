@@ -50,7 +50,7 @@ it('creates a style node with appropriate style for an object className attribut
     color: 'red',
     fontSize: 24,
     backgroundColor: 'chartreuse',
-    paddingTop: 16
+    paddingTop: 16,
   }));
 });
 
@@ -62,7 +62,7 @@ it('will add (merge) to an existing style definition that is an object for a obj
       color: 'red',
       fontSize: 24,
       backgroundColor: 'chartreuse',
-      paddingTop: 16
+      paddingTop: 16,
     }, {
       color: 'pink',
     },

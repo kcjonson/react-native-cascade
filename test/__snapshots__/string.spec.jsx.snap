@@ -12,6 +12,7 @@ exports[`matches the snapshot for a string className attribute 1`] = `
         "backgroundColor": "chartreuse",
         "color": "red",
         "fontSize": 24,
+        "paddingTop": 16,
       }
     }
     test-id="base"
@@ -45,6 +46,7 @@ exports[`matches the snapshot for a string className attribute 1`] = `
           "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
+          "paddingTop": 16,
         },
         Object {
           "color": "pink",
@@ -66,6 +68,7 @@ exports[`matches the snapshot for a string className attribute 1`] = `
           "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
+          "paddingTop": 16,
         },
         Object {
           "color": "pink",
@@ -87,6 +90,7 @@ exports[`matches the snapshot for a string className attribute 1`] = `
           "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
+          "paddingTop": 16,
         },
         Array [
           Object {
@@ -103,7 +107,9 @@ exports[`matches the snapshot for a string className attribute 1`] = `
     className="text-medium"
     style={
       Array [
-        null,
+        Object {
+          "paddingTop": 16,
+        },
         Object {
           "backgroundColor": "pink",
         },
@@ -113,7 +119,11 @@ exports[`matches the snapshot for a string className attribute 1`] = `
   />
   <View
     className="text-medium"
-    style={null}
+    style={
+      Object {
+        "paddingTop": 16,
+      }
+    }
     test-id="unmatched"
   />
 </View>

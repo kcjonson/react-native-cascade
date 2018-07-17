@@ -24,8 +24,9 @@ it('creates a style node with appropriate style for a string className attribute
   const hasStylesNode = com.find({'test-id': 'base'});
   expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify({
     color: 'red',
-    backgroundColor: 'chartreuse',
     fontSize: 24,
+    backgroundColor: 'chartreuse',
+    paddingTop: 16,
   }));
 });
 
@@ -47,8 +48,9 @@ it('will add (merge) to an existing style definition for a string className attr
     expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify([
       {
         color: 'red',
-        backgroundColor: 'chartreuse',
         fontSize: 24,
+        backgroundColor: 'chartreuse',
+        paddingTop: 16,
       }, {
         color: 'pink',
       },
@@ -59,7 +61,7 @@ it('will add (merge) to an existing style definition for a string className attr
 it('will add (merge) to an existing style definition that is an array for a string className attribute', () => {
   const com = shallow(<StringComponent />);
   const hasStylesNode = com.find({'test-id': 'style-unmatched'});
-  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe('[null,{"backgroundColor":"pink"}]');
+  expect(JSON.stringify(hasStylesNode.prop('style'))).toBe('[{"paddingTop":16},{"backgroundColor":"pink"}]');
 });
 
 // These are tests for build time optimizations that are currently turned off.

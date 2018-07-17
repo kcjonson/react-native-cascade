@@ -48,8 +48,9 @@ it('creates a style node with appropriate style for an object className attribut
   const hasStylesNode = com.find({'test-id': 'base'});
   expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify({
     color: 'red',
-    backgroundColor: 'chartreuse',
     fontSize: 24,
+    backgroundColor: 'chartreuse',
+    paddingTop: 16
   }));
 });
 
@@ -59,8 +60,9 @@ it('will add (merge) to an existing style definition that is an object for a obj
   expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify([
     {
       color: 'red',
-      backgroundColor: 'chartreuse',
       fontSize: 24,
+      backgroundColor: 'chartreuse',
+      paddingTop: 16
     }, {
       color: 'pink',
     },
@@ -73,8 +75,9 @@ it('will add (merge) to an existing style definition that is an array for a obje
   expect(JSON.stringify(hasStylesNode.prop('style'))).toBe(JSON.stringify([
     {
       color: 'red',
-      backgroundColor: 'chartreuse',
       fontSize: 24,
+      backgroundColor: 'chartreuse',
+      paddingTop: 16,
     },
     [{color: 'pink'}],
   ]));

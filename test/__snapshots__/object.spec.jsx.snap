@@ -12,6 +12,7 @@ exports[`matches the snapshot for for an object className attribute 1`] = `
         "backgroundColor": "chartreuse",
         "color": "red",
         "fontSize": 24,
+        "paddingTop": 16,
       }
     }
     test-id="base"
@@ -29,6 +30,7 @@ exports[`matches the snapshot for for an object className attribute 1`] = `
           "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
+          "paddingTop": 16,
         },
         Object {
           "color": "pink",
@@ -50,6 +52,7 @@ exports[`matches the snapshot for for an object className attribute 1`] = `
           "backgroundColor": "chartreuse",
           "color": "red",
           "fontSize": 24,
+          "paddingTop": 16,
         },
         Array [
           Object {
